@@ -1,0 +1,94 @@
+.auth {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #f6e1e1, #fad0c4, #fad0c4, #ff9a9e) !important;
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+
+  .head {
+    height: 200px;
+    background: url('//s.yezgea02.com/1616032174786/cryptocurrency.png') no-repeat center;
+    background-size: cover;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .tab {
+    display: flex;
+    justify-content: center;
+    margin-top: -30px;
+
+    span {
+      display: inline-block;
+      background-color: white;
+      margin: 0 10px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+      }
+
+      &.active {
+        color: #597fe7;
+        font-weight: bold;
+        border-bottom: none;
+        background-color: #f0f0f0;
+      }
+    }
+  }
+
+  .form {
+    padding: 20px;
+    .za-cell {
+      background-color: transparent !important;
+      margin-bottom: 15px !important;
+      border-bottom: 1px solid #eaeaea !important; 
+
+      &:last-child {
+        margin-bottom: 30px !important;
+      }
+
+      .za-input-wrapper .za-input {
+        background-color: #f0f0f0 !important; 
+        border-color: #d1d1d1 !important; 
+        color: #333 !important; 
+        --placeholder-color: #c7c7c7 !important; 
+      }
+    }
+  }
+
+  .operation {
+    padding: 0 20px;
+
+    .custom-gradient-button {
+      background: linear-gradient(135deg, #7B68EE 0%, #00BFFF 100%) !important;
+      border: none !important;
+      color: white !important;
+      border-radius: 22px;
+      --padding-vertical: 12px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, #6A5ACD 0%, #007BFF 100%) !important; // 鼠标悬停时反转渐变
+    }
+  }
+}
+
+// Gradient background animation
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

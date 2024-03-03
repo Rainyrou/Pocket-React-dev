@@ -1,0 +1,10 @@
+**/dist/**
+**/node_modules/**
+package.json
+.eslintrc.cjs
+tsconfig.json
+/build
+/public
+postcss.config.js
+/android
+vite.config.js

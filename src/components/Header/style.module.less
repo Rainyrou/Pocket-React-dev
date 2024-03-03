@@ -1,0 +1,29 @@
+.header-warp {
+  border-bottom: 1px solid #fad0c4;
+  .block {
+    width: 100%;
+    height: 46px;
+    :global {
+      .za-nav-bar__title {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.9);
+      }
+      .za-icon--arrow-left {
+        font-size: 20px;
+      }
+    }
+  }
+  .header {
+    background: linear-gradient(-45deg, #f6e1e1, #fad0c4, #fad0c4, #f0e1e1) !important;
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    padding: 0 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    .more {
+      font-size: 20px;
+    }
+  }
+}
