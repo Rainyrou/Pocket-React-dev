@@ -26,7 +26,7 @@ const Header = ({ title = '' }) => {
 };
 
 Header.propTypes = {
-  title: PropTypes.string // 标题
+  title: PropTypes.string
 };
 
 export default Header;

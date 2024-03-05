@@ -6,13 +6,12 @@ import s from './style.module.less';
 
 const PopupType = forwardRef(({ onSelect }, ref) => {
   PopupType.displayName = 'PopupType';
-  const [show, setShow] = useState(false); // 组件的显示和隐藏
+  const [show, setShow] = useState(false);
   const [active, setActive] = useState('all'); // 激活的 type
-  const [expense, setExpense] = useState([]); // 支出类型标签
-  const [income, setIncome] = useState([]); // 收入类型标签
+  const [expense, setExpense] = useState([]);
+  const [income, setIncome] = useState([]);
 
   useEffect(async () => {
-    // 请求标签接口放在弹窗内，这个弹窗可能会被复用，所以请求如果放在外面，会造成代码冗余。
     const list = [
       {
         id: 1,
@@ -117,11 +116,11 @@ const PopupType = forwardRef(({ onSelect }, ref) => {
 
   if (ref) {
     ref.current = {
-      // 外部可以通过 ref.current.show 来控制组件的显示
+      // 外部可通过 ref.current.show 来控制组件的显示
       show: () => {
         setShow(true);
       },
-      // 外部可以通过 ref.current.close 来控制组件的显示
+      // 外部可通过 ref.current.close 来控制组件的隐藏
       close: () => {
         setShow(false);
       }
@@ -132,7 +131,7 @@ const PopupType = forwardRef(({ onSelect }, ref) => {
   const choseType = (item) => {
     setActive(item.id);
     setShow(false);
-    // 父组件传入的 onSelect，为了获取类型
+    // 父组件传入的 onSelect 以获取类型
     onSelect(item);
   };
 

@@ -12,25 +12,24 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
   const id = detail && detail.id; // 外部传进来的账单详情 id
   const [show, setShow] = useState(false); // 内部控制弹窗显示隐藏
 
-  // 通过 forwardRef 拿到外部传入的 ref，并添加属性，使得父组件可以通过 ref 控制子组件
-  const [payType, setPayType] = useState('expense'); // 支出或收入类型
-  const [date, setDate] = useState(new Date()); // 日期
-  const [remark, setRemark] = useState(''); // 备注
-  const [showRemark, setShowRemark] = useState(false); // 备注输入框展示控制
+  // 通过 forwardRef 拿到外部传入的 ref,并添加属性，使得父组件可以通过 ref 控制子组件
+  const [payType, setPayType] = useState('expense');
+  const [date, setDate] = useState(new Date());
+  const [remark, setRemark] = useState('');
+  const [showRemark, setShowRemark] = useState(false);
 
-  // 切换收入还是支出
+  // 切换收入支出
   const dateRef = useRef();
   const [amount, setAmount] = useState(''); // 账单价格
 
   const [currentType, setCurrentType] = useState({}); // 当前选中账单类型
-  const [expense, setExpense] = useState([]); // 支出类型数组
-  const [income, setIncome] = useState([]); // 收入类型数组
+  const [expense, setExpense] = useState([]);
+  const [income, setIncome] = useState([]);
 
   const changeType = (type) => {
     setPayType(type);
   };
 
-  // 日期选择回调
   const selectDate = (val) => {
     setDate(val);
   };
@@ -152,7 +151,7 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
     const _income = list.filter((i) => i.type == 2); // 收入类型
     setExpense(_expense);
     setIncome(_income);
-    // 没有 id 的情况下，说明是新建账单。
+    // 无 id 时为新建账单
     if (!id) {
       setCurrentType(_expense[0]);
     }
@@ -161,22 +160,20 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
   // 监听输入框改变值
   const handleMoney = (value) => {
     value = String(value);
-    // 点击是删除按钮时
     if (value == 'delete') {
       let _amount = amount.slice(0, amount.length - 1);
       setAmount(_amount);
       return;
     }
-    // 点击确认按钮时
     if (value == 'ok') {
-      // 这里将处理添加账单逻辑
+      // 这里处理添加账单逻辑
       addBill();
       return;
     }
 
-    // 当输入的值为 '.' 且 已经存在 '.'，则不让其继续字符串相加。
+    // 当输入的值为 '.' 且存在 '.'，则不继续添加字符串
     if (value == '.' && amount.includes('.')) return;
-    // 小数点后保留两位，当超过两位时，不让其字符串继续相加。
+    // 小数点后保留两位，当超过两位时，不继续添加字符串
     if (
       value != '.' &&
       amount.includes('.') &&
@@ -184,11 +181,9 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
       amount.split('.')[1].length >= 2
     )
       return;
-    // amount += value
     setAmount(amount + value);
   };
 
-  // 添加账单
   const addBill = async () => {
     if (!amount) {
       Toast.show('请输入具体金额');
@@ -204,7 +199,7 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
     };
     if (id) {
       params.id = id;
-      // 如果有 id 需要调用详情更新接口
+      // 若有 id 调用更新接口
       const result = await post('/api/bill/update', params);
       Toast.show('修改成功');
     } else {
@@ -279,14 +274,12 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
         </div>
         <div className={s.typeWarp}>
           <div className={s.typeBody}>
-            {/* 通过 payType 判断，是展示收入账单类型，还是支出账单类型 */}
             {(payType == 'expense' ? expense : income).map((item) => (
               <div
                 onClick={() => setCurrentType(item)}
                 key={item.id}
                 className={s.typeItem}
               >
-                {/* 收入和支出的字体颜色，以及背景颜色通过 payType 区分，并且设置高亮 */}
                 <span
                   className={cx({
                     [s.iconfontWrap]: true,

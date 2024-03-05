@@ -7,8 +7,8 @@ const NavBar = ({ showNav, pathname }) => {
   const [activeKey, setActiveKey] = useState('/');
 
   /**
-   * 通过 useHistory 钩子方法，拿到路由实例 history，它内部含有很多路由的方法
-   * 我们使用到的是 history.push 进行路由跳转。
+   * 通过 useHistory 钩子拿到路由实例 history
+   * 进行 history.push 进行路由跳转
    * @type {History<LocationState>}
    */
   const history = useHistory();
@@ -18,9 +18,6 @@ const NavBar = ({ showNav, pathname }) => {
     history.push(path);
   };
 
-  /**
-   * 声明 NavBar 函数组件，它接收一个外部传入的 showNav 属性，用于控制导航栏的显示隐藏
-   */
   return (
     <TabBar visible={showNav} activeKey={pathname} onChange={changeTab}>
       <TabBar.Item
@@ -41,4 +38,5 @@ const NavBar = ({ showNav, pathname }) => {
     </TabBar>
   );
 };
+
 export default NavBar;
