@@ -41,25 +41,33 @@
   }
   .logout {
     display: block; 
-    width: 90%;
-    max-width: 300px; 
-    padding: 10px 0; 
-    text-align: center; 
     position: absolute;
     bottom: 70px; 
-    left: 50%;
-    transform: translateX(-50%); 
+    text-align: center;
     background-color: #f44336; 
-    color: white; 
-    border-radius: 20px; 
-    font-size: 16px; 
-    text-decoration: none; 
-    border: none; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; 
+    border: none !important;
+    color: white !important;
+    border-radius: 22px;
+    --padding-vertical: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
   }
 
   .logout:hover {
     background-color: #d32f2f; /* 鼠标悬停时的背景颜色 */
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
